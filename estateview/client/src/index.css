@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    @apply bg-paper font-sans text-ink antialiased;
+  }
+  :focus-visible {
+    outline: 2px solid #1D6B57;
+    outline-offset: 2px;
+  }
+  button, a, select, input { -webkit-tap-highlight-color: transparent; }
+}
+
+@layer utilities {
+  .no-scrollbar { scrollbar-width: none; }
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .safe-bottom { padding-bottom: max(1rem, env(safe-area-inset-bottom)); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+.skeleton {
+  background: linear-gradient(90deg, #E6EAED 25%, #F1F3F5 37%, #E6EAED 63%);
+  background-size: 800px 100%;
+  animation: shimmer 1.4s infinite linear;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
